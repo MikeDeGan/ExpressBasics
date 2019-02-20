@@ -1,20 +1,19 @@
+const path = require('path');
 const express = require('express');
-
+// const rootDir = require('./utils/path');
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/users', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'views', 'users.html'));
+});
+
+app.get('/', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
 app.use('/', (req, res, next) => {
-  console.log('This always runs');
-  next();
+  res.status(404).send('<h1>Nope</h1>');
 });
-
-app.use('/users', (req, res, next) => {
-  console.log('This will return a list of users');
-  res.send('<h1>Hello</h1>');
-});
-
-app.use('/', (req, res, next) => {
-  console.log('This will not return a list of users');
-  res.send('<h1>Hello from the bottom</h1>');
-});
-
 app.listen(3000);
