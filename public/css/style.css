@@ -35,7 +35,7 @@ h1 {
 
 .main-header__item a {
   text-decoration: none;
-  color: white;
+  color: rgb(233, 233, 233);
 }
 
 .main-header__item a:hover,
